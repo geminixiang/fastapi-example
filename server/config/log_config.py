@@ -16,10 +16,15 @@ uvicorn_logger = {
             "class": "logging.StreamHandler",
             "stream": "ext://sys.stdout",
         },
+        "file": {
+            "formatter": "access",
+            "class": "logging.FileHandler",
+            "filename": "./app.log"
+        }
     },
     "loggers": {
         "uvicorn.access": {
-            "handlers": ["access"],
+            "handlers": ["access", "file"],
             # "level": "INFO",
             "propagate": False
         },

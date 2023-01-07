@@ -12,9 +12,14 @@ handlers:
     class: logging.StreamHandler
     level: DEBUG
     stream: ext://sys.stdout
+  file:
+    formatter: access
+    class: logging.FileHandler
+    level: DEBUG
+    filename: "./app.log"
 loggers:
   uvicorn.access:
-    handlers: [access]
+    handlers: [access, file]
     level: DEBUG
     propagate: no
 root:
