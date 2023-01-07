@@ -9,7 +9,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from config.log_config import uvicorn_logger
 from db.fake_db import db
 
-logging.config.dictConfig(uvicorn_logger)
+# Logging
+# 1. .py
+# logging.config.dictConfig(uvicorn_logger)
+# 2. .yml
+import yaml
+with open('server/config/log_config.yml', 'r') as stream:
+    config = yaml.load(stream, Loader=yaml.FullLoader)
+logging.config.dictConfig(config)
+
+
 
 NOT_EXIST = Response(status_code=400, content="not exists", media_type="text/event-stream")
 origins = [
@@ -45,8 +54,6 @@ async def user(v: str):
     res, doc = contains(db, lambda x: x['username'] == v)
     if not res:
         return NOT_EXIST
-
-    print(doc)
 
     return JSONResponse(
         status_code=200,

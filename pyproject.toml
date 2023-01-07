@@ -12,6 +12,7 @@ python = "^3.10"
 fastapi = "^0.88.0"
 gevent = "^22.10.2"
 uvicorn = "^0.20.0"
+pyaml = "^21.10.1"
 
 
 [tool.poetry.group.dev.dependencies]
