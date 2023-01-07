@@ -9,3 +9,10 @@ poetry install && poetry shell && python server/app.py
 
 ## Run client
 Live server - VSCode plugin
+
+## Unit test
+```bash
+pytest
+# debug
+pytest -s
+```

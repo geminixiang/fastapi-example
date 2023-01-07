@@ -47,6 +47,8 @@ async def user(v: str):
     if not res:
         return NOT_EXIST
 
+    print(doc)
+
     return JSONResponse(
         status_code=200,
         content=doc
@@ -64,7 +66,6 @@ async def put_user(v: str, data: dict):
         return NOT_EXIST
 
     doc.update(data)
-
 
     return JSONResponse(
         status_code=200,
