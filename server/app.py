@@ -1,5 +1,4 @@
 import logging
-from typing import Union
 
 import uvicorn
 from fastapi import FastAPI, Response
@@ -8,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 from config.log_config import uvicorn_logger
-from fake_db import db
+from db.fake_db import db
 
 logging.config.dictConfig(uvicorn_logger)
 
