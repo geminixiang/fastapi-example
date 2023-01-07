@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "fastapi-example"
+version = "0.1.0"
+description = ""
+authors = ["f416720001 <f416720001@yahoo.com.tw>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "fastapi_example"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.88.0"
+gevent = "^22.10.2"
+uvicorn = "^0.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
