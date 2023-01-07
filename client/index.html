@@ -27,7 +27,7 @@
       <p id="response"></p>
     </pre>
     <button onclick="db_get()">GET</button>
-    <button onclick="db_put()">PUT</button>
+    <button onclick="db_post()">POST</button>
     <button onclick="content_clear()">Clear</button>
   </code>
   </div>
@@ -47,15 +47,15 @@
     )
   }
 
-  function db_put() {
+  function db_post() {
     var username = document.getElementById("username").value;
     var number = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
 
-    fetch_put(
+    fetch_post(
       'http://127.0.0.1:5000/v1/user?v=' + username,
       { "email": "eaton" + number.toString() + "@gmail.com" },
-      'PUT success',
-      'PUT failed'
+      'POST success',
+      'POST failed'
     )
   }
 
@@ -69,38 +69,28 @@
   // Fetch funtions
   function fetch_get(url, suc, err) {
     fetch(url)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return response.text().then(err => Promise.reject(err));
-      })
+      .then((response) => response.ok ? response.json() : response.text().then(err => Promise.reject(err)))
       .then((data) => {
         document.getElementById('response').innerHTML = JSON.stringify(data, null, 4);
         success_msg(suc);
       })
       .catch((error) => {
         document.getElementById('response').innerHTML = error;
-        error_msg(error)
+        error_msg(error);
       });
   }
 
-  function fetch_put(url, data, suc, err) {
+  function fetch_post(url, data, suc, err) {
     fetch(
       url,
       {
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify(data),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         }
       })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return response.text().then(err => Promise.reject(err));
-      })
+      .then((response) => response.ok ? response.json() : response.text().then(err => Promise.reject(err)))
       .then((data) => {
         document.getElementById('response').innerHTML = JSON.stringify(data, null, 4);
         success_msg(suc);
@@ -121,7 +111,7 @@
       theme: 'relax',
       layout: 'bottomRight',
       timeout: 1500,
-      text: msg,
+      text: msg.toString(),
     }).show();
   }
 
@@ -131,7 +121,7 @@
       theme: 'relax',
       layout: 'bottomRight',
       timeout: 1500,
-      text: msg,
+      text: msg.toString(),
     }).show();
   }
 
@@ -141,7 +131,7 @@
       theme: 'relax',
       layout: 'bottomRight',
       timeout: 1500,
-      text: msg,
+      text: msg.toString(),
     }).show();
   }
 
@@ -151,7 +141,7 @@
       theme: 'relax',
       layout: 'bottomRight',
       timeout: 1500,
-      text: msg,
+      text: msg.toString(),
     }).show();
   }
 </script>
