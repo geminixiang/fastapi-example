@@ -16,7 +16,7 @@ handlers:
     formatter: access
     class: logging.FileHandler
     level: DEBUG
-    filename: "./app.log"
+    filename: "/var/log/fast-test.log"
 loggers:
   uvicorn.access:
     handlers: [access, file]

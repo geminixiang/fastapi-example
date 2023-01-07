@@ -19,7 +19,7 @@ uvicorn_logger = {
         "file": {
             "formatter": "access",
             "class": "logging.FileHandler",
-            "filename": "./app.log"
+            "filename": "/var/log/fast-test.log"
         }
     },
     "loggers": {
